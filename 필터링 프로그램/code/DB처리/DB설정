@@ -1,0 +1,30 @@
+
+SHOW databases;
+USE STOCK_DB;
+SHOW TABLES;
+SELECT *
+FROM dstock
+where symbol = 'A005930'
+	and date = '2017-05-18 00:00:00';
+
+show index from ystock;
+
+select * from qstock;
+     
+ALTER TABLE dstock DROP INDEX ix_dstock_date;
+ALTER TABLE dstock ADD UNIQUE INDEX pk_index (symbol, date);
+ALTER TABLE dstock add PRIMARY KEY (symbol, date) ;
+   
+ALTER TABLE ystock DROP INDEX pk_index;
+ALTER TABLE ystock ADD UNIQUE INDEX pk_index (symbol, date);
+
+ALTER TABLE qstock DROP INDEX pk_index;
+ALTER TABLE qstock ADD UNIQUE INDEX pk_index (symbol, date);
+ALTER TABLE qstock add PRIMARY KEY (symbol, date) ;
+ALTER TABLE qstock MODIFY date varchar(8);
+
+SELECT *
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA='dstock';
+
+SHOW FULL COLUMNS FROM qstock;
